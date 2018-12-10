@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PłatnicyModelStoreContainer" CdmEntityContainer="PłatnicyEntities">
+    <EntitySetMapping Name="Płatnicy">
+      <EntityTypeMapping TypeName="PłatnicyModel.Płatnicy">
+        <MappingFragment StoreEntitySet="Płatnicy">
+          <ScalarProperty Name="Imię" ColumnName="Imię" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="e_mail" ColumnName="e-mail" />
+          <ScalarProperty Name="Numer_telefonu" ColumnName="Numer telefonu" />
+          <ScalarProperty Name="Opłata_wpisowa" ColumnName="Opłata wpisowa" />
+          <ScalarProperty Name="Wrzesień" ColumnName="Wrzesień" />
+          <ScalarProperty Name="Listopad" ColumnName="Listopad" />
+          <ScalarProperty Name="Grudzień" ColumnName="Grudzień" />
+          <ScalarProperty Name="Styczeń" ColumnName="Styczeń" />
+          <ScalarProperty Name="Luty" ColumnName="Luty" />
+          <ScalarProperty Name="Marzec" ColumnName="Marzec" />
+          <ScalarProperty Name="Kwiecień" ColumnName="Kwiecień" />
+          <ScalarProperty Name="Maj" ColumnName="Maj" />
+          <ScalarProperty Name="Czerwiec" ColumnName="Czerwiec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
