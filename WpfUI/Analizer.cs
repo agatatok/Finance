@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections;
 
 namespace WpfUI
 {
@@ -11,6 +12,7 @@ namespace WpfUI
     {
         private string source;
         private string[] text;
+        private ArrayList textarray;
         public string Source { get => source; set => source = value; }
 
         public Analizer(string source)
@@ -22,14 +24,14 @@ namespace WpfUI
         public void Analize()
         {
             Read();
-            Payment[] payments = new Payment[text.Length];
+            ArrayList paymentlist = new ArrayList();
             for (int i = 0; i < text.Length; i++)
             {
                 string[] oneLine = text[i].Split('|');
                 double sumDouble = Convert(oneLine[5]);
                 if (sumDouble > 0)
                 {
-                    payments[i] = new Payment(oneLine[3], oneLine[2], Convert(oneLine[5]));
+                    paymentlist.Add(new Payment(oneLine[3], oneLine[2], Convert(oneLine[5])));
                 }
             }
 
@@ -52,6 +54,7 @@ namespace WpfUI
 
         private void Read()
         {
+            
             int linesCount = 0;
             using (StreamReader sr = new StreamReader(source))
             {
