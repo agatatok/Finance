@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PłatnicyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Płatnicy">
+    <Key>
+      <PropertyRef Name="Nazwisko" />
+    </Key>
+    <Property Name="Imię" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="e-mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Numer telefonu" Type="int" Nullable="false" />
+    <Property Name="Opłata wpisowa" Type="money" />
+    <Property Name="Wrzesień" Type="money" />
+    <Property Name="Listopad" Type="money" />
+    <Property Name="Grudzień" Type="money" />
+    <Property Name="Styczeń" Type="money" />
+    <Property Name="Luty" Type="money" />
+    <Property Name="Marzec" Type="money" />
+    <Property Name="Kwiecień" Type="money" />
+    <Property Name="Maj" Type="money" />
+    <Property Name="Czerwiec" Type="money" />
+  </EntityType>
+  <EntityContainer Name="PłatnicyModelStoreContainer">
+    <EntitySet Name="Płatnicy" EntityType="Self.Płatnicy" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

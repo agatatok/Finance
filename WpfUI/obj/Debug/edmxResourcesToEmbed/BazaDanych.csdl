@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PłatnicyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Płatnicy">
+    <Key>
+      <PropertyRef Name="Nazwisko" />
+    </Key>
+    <Property Name="Imię" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Numer_telefonu" Type="Int32" Nullable="false" />
+    <Property Name="Opłata_wpisowa" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Wrzesień" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Listopad" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Grudzień" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Styczeń" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Luty" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Marzec" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Kwiecień" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Maj" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Czerwiec" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityContainer Name="PłatnicyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Płatnicy" EntityType="Self.Płatnicy" />
+  </EntityContainer>
+</Schema>
