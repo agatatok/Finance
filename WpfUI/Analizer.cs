@@ -11,13 +11,13 @@ namespace WpfUI
     class Analizer
     {
         private string source;
-        private string[] text;
         private ArrayList textarray;
         public string Source { get => source; set => source = value; }
 
         public Analizer(string source)
         {
             this.source = source;
+            textarray = new ArrayList();
         }
 
         
@@ -25,25 +25,22 @@ namespace WpfUI
         {
             Read();
             ArrayList paymentlist = new ArrayList();
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < textarray.Count-1; i++)
             {
-                string[] oneLine = text[i].Split('|');
-                double sumDouble = Convert(oneLine[5]);
+                string[] oneLine = textarray[i].ToString().Split('|');
+                double sumDouble = ConvertSum(oneLine[5]);
                 if (sumDouble > 0)
                 {
-                    paymentlist.Add(new Payment(oneLine[3], oneLine[2], Convert(oneLine[5])));
+                    paymentlist.Add(new Payment(oneLine[3], oneLine[2], ConvertSum(oneLine[5])));
                 }
             }
 
         }
 
 
-        private double Convert(string sum)
+        private double ConvertSum(string sum)
         {
-            if (sum.StartsWith("-"))
-            {
-                return 0;
-            }
+            if (sum.StartsWith("-"))   { return 0; }
             else
             {
                 sum = sum.Replace(',', '.');
@@ -54,25 +51,18 @@ namespace WpfUI
 
         private void Read()
         {
-            
-            int linesCount = 0;
             using (StreamReader sr = new StreamReader(source))
             {
-                while (sr.ReadLine() != null) { linesCount++; }
-            }
-
-            text = new string[linesCount - 1];
-
-            using (StreamReader sr = new StreamReader(source))
-            {
-                sr.ReadLine();
-                for (int i = 0; i < text.Length; i++)
+                //reading lines from second to last, removing null at the and
+                string line = sr.ReadLine();
+                while (line != null)
                 {
-                    text[i] = sr.ReadLine();
+                    line = sr.ReadLine();
+                    textarray.Add(line);
                 }
+                textarray.RemoveAt(textarray.Count-1);
+                
             }
         }
-
-        
     }
 }
