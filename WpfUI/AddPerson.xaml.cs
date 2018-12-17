@@ -41,10 +41,7 @@ namespace WpfUI
 
             else
             {
-                
                 Person newPerson = CreatePerson();
-                Database.People.Add(newPerson);
-
                 InsertIntoDatabase(newPerson);
 
                 string message_Added = $"Nowy płatnik {newPerson.Nazwisko} {newPerson.Imię} został dodany pomyślnie.";
@@ -72,7 +69,6 @@ namespace WpfUI
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
             }
-
         }
 
 

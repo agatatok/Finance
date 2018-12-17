@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfUI
 {
@@ -24,19 +26,37 @@ namespace WpfUI
         public void Analize()
         {
             Read();
-            ArrayList paymentlist = new ArrayList();
+            List<Payment> payments = new List<Payment>();
+            //ArrayList paymentlist = new ArrayList();
             for (int i = 0; i < textarray.Count-1; i++)
             {
                 string[] oneLine = textarray[i].ToString().Split('|');
                 double sumDouble = ConvertSum(oneLine[5]);
                 if (sumDouble > 0)
                 {
-                    paymentlist.Add(new Payment(oneLine[3], oneLine[2], ConvertSum(oneLine[5])));
+                    payments.Add(new Payment(oneLine[3], oneLine[2], ConvertSum(oneLine[5])));
                 }
             }
-
+            InsertIntoDatabase(payments);
         }
 
+        private void InsertIntoDatabase(List<Payment> payments)
+        {
+            foreach(var pay in payments)
+            {
+                using (SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connstrPlatnicy"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string cmdstr = "UPDATE [Płatnicy] SET Czerwiec = @param1 WHERE Id=@param2";
+                    SqlCommand cmd = new SqlCommand(cmdstr, connection);
+                    cmd.Parameters.Add("@param1", SqlDbType.Int, 50).Value = (Int32)pay.Sum;
+                    cmd.Parameters.Add("@param2", SqlDbType.Int, 50).Value = Int32.Parse(pay.Title);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         private double ConvertSum(string sum)
         {

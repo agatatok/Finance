@@ -15,7 +15,7 @@ namespace WpfUI
 
         public string Name { get => name; set => name = value; }
         public double Sum { get => sum; set => sum = value; }
-        public string Tite { get => title; set => title = value; }
+        public string Title { get => title; set => title = value; }
 
         public Payment(string name, string title, double sum)
         {

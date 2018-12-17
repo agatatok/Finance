@@ -27,15 +27,7 @@ namespace WpfUI
     public partial class Database : Window
     {
         DataTable dt;
-        static ObservableCollection<Person> people = new ObservableCollection<Person>();
-        public static ObservableCollection<Person> People
-        {
-            get
-            {
-                return people;
-            }
-        }
-        
+               
         public Database()
         {
            InitializeComponent();
