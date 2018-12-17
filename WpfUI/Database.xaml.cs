@@ -26,6 +26,7 @@ namespace WpfUI
     /// </summary>
     public partial class Database : Window
     {
+        DataTable dt;
         static ObservableCollection<Person> people = new ObservableCollection<Person>();
         public static ObservableCollection<Person> People
         {
@@ -51,7 +52,7 @@ namespace WpfUI
             cmd.CommandText = "select * from [Płatnicy]";
             cmd.Connection = connection;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("Płatnicy");
+            dt = new DataTable("Płatnicy");
             da.Fill(dt);
 
             dg_Baza.ItemsSource = dt.DefaultView;
@@ -63,7 +64,33 @@ namespace WpfUI
             window1.Show();
 
         }
-        
 
+        private void DeletePersonFromBase_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć płatnika?", "Usunięcie płatnika", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                DataRowView Id = (DataRowView)dg_Baza.SelectedItem;
+                string personId = Id.Row.ItemArray[0].ToString();
+                DeleteFromBase(personId);
+                dt.Rows.Remove(Id.Row);
+            }
+        }
+
+        private void DeleteFromBase(string personId)
+        {
+            string Id = personId;
+            
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connstrPlatnicy"].ConnectionString))
+            {
+                connection.Open();
+
+                string cmdstr = "DELETE FROM [Płatnicy] WHERE ID=@param1";
+                SqlCommand cmd = new SqlCommand(cmdstr, connection);
+                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = personId;
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
