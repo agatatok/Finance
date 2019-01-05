@@ -57,15 +57,13 @@ namespace WpfUI
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connstrPlatnicy"].ConnectionString))
             {
                 connection.Open();
-
-                string cmdstr = "INSERT INTO [Płatnicy](Nazwisko, Imię) VALUES(@param1,@param2)";
-                //string cmdstr = "INSERT INTO [Płatnicy](Nazwisko, Imię, email, [Numer telefonu], [Opłata wpisowa]) VALUES(@param1,@param2,@param3,param4,@param5)";
+                
+                string cmdstr = "INSERT INTO [Płatnicy](Nazwisko, Imię, email, [Numer telefonu], [Opłata wpisowa]) VALUES(@param1,@param2,@param3," 
+                    + Person.Nrtel+ ","+Person.OpłataWpisowa+")";
                 SqlCommand cmd = new SqlCommand(cmdstr, connection);
                 cmd.Parameters.Add("@param1", SqlDbType.VarChar, 50).Value = Person.Nazwisko;
                 cmd.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = Person.Imię;
-                //cmd.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = Person.Email;
-                //cmd.Parameters.Add("@param4", SqlDbType.Int).Value = Person.Nrtel;
-                //cmd.Parameters.Add("@param5", SqlDbType.Int).Value = Person.OpłataWpisowa;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = Person.Email;
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
             }

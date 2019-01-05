@@ -27,7 +27,6 @@ namespace WpfUI
         {
             Read();
             List<Payment> payments = new List<Payment>();
-            //ArrayList paymentlist = new ArrayList();
             for (int i = 0; i < textarray.Count-1; i++)
             {
                 string[] oneLine = textarray[i].ToString().Split('|');
@@ -48,7 +47,7 @@ namespace WpfUI
                 {
                     connection.Open();
 
-                    string cmdstr = "UPDATE [Płatnicy] SET Czerwiec = @param1 WHERE Id=@param2";
+                    string cmdstr = "UPDATE [Płatnicy] SET Styczeń = @param1 WHERE Id=@param2";
                     SqlCommand cmd = new SqlCommand(cmdstr, connection);
                     cmd.Parameters.Add("@param1", SqlDbType.Int, 50).Value = (Int32)pay.Sum;
                     cmd.Parameters.Add("@param2", SqlDbType.Int, 50).Value = Int32.Parse(pay.Title);

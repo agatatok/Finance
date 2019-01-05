@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfUI"
         mc:Ignorable="d" FontSize="14" FontFamily="Segoe UI Light"
-        Title="Wczytaj" Height="280" Width="480" Icon="logo.png">
+        Title="Wczytaj" Height="280" Width="480" Icon="logo.png"
+        Background="#F8F9F9">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -29,12 +30,24 @@
 
         <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" FontSize="30" Text="Wczytaj wyciąg"
                    Margin="0, 0, 0, 10"/>
-        <TextBlock Grid.Column="1" Grid.Row="2"  Text="Źródło" Margin="0, 10, 10, 10"/>
+        <TextBlock Grid.Column="1" Grid.Row="2"  Text="Źródło:" Margin="0, 10, 10, 10"/>
         <TextBox x:Name="tb_source" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3"
                  Margin="0, 10" Width="350"/>
         <Button Grid.Column="5" Grid.Row="2" x:Name="btnBrowse" 
                 Click="BtnBrowse_Click" Margin="10" Content=" ... "/>
-        <Button Grid.Column="2" Grid.Row="3" Name="open"
+
+        <TextBlock Grid.Column="1" Grid.Row="3"  Text="Miesiąc:" Margin="0, 10, 10, 10"/>
+
+        <ComboBox x:Name="months" Grid.Column="2" Grid.Row="3"
+                   Margin="0, 10">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding MonthName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
+        <Button Grid.Column="2" Grid.Row="4" Name="open"
                 Margin="0, 10, 10, 10" Click="Open_Click">
             Wczytaj wyciąg
         </Button>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfUI"
         mc:Ignorable="d" FontSize="14" FontFamily="Segoe UI Light"
-        Title="Dodaj" Height="450" Width="400" Icon="logo.png">
+        Title="Dodaj" Height="450" Width="400" Icon="logo.png"
+        Background="#F8F9F9">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />

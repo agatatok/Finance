@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfUI"
         mc:Ignorable="d" FontSize="14" FontFamily="Segoe UI Light"
-        Title="Baza" WindowState="Maximized" Icon="logo.png" d:DesignWidth="889">
+        Title="Baza" WindowState="Maximized" Icon="logo.png" d:DesignWidth="889"
+        Background="#F8F9F9">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -36,7 +37,7 @@
                 <DataGridTextColumn Binding="{Binding ID}" Header="Id"/>
                 <DataGridTextColumn Binding="{Binding Nazwisko}" Header="Nazwisko"/>
                 <DataGridTextColumn Binding="{Binding Imię}" Header="Imię"/>
-                <DataGridTextColumn Binding="{Binding e-mail}" Header="Adres e-mail"/>
+                <DataGridTextColumn Binding="{Binding email}" Header="Adres e-mail"/>
                 <DataGridTextColumn Binding="{Binding [Numer telefonu]}" Header="Nr telefonu"/>
                 <DataGridTextColumn Binding="{Binding [Opłata Wpisowa]}" Header="Opłata wpisowa"/>
                 <DataGridTextColumn Binding="{Binding Wrzesień}" Header="Wrzesień"/>
@@ -52,7 +53,7 @@
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="delete" Content="Usuń" Click="DeletePersonFromBase_Click">
+                            <Button x:Name="delete" Content="  Usuń płatnika   " Click="DeletePersonFromBase_Click">
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -63,7 +64,6 @@
         
         <Button x:Name="addPersonIntoBase" Content="Dodaj płatnika" Grid.Column="1" 
                 Grid.Row="2" Grid.ColumnSpan="1" Margin="10, 10, 10, 10" Click="AddPersonIntoBase_Click"/>
-        <Button x:Name="deletePersonFromBase" Content="Usuń płatnika" Grid.Column="2" 
-                Grid.Row="2" Grid.ColumnSpan="1" Margin="10, 10, 10, 10" Click="DeletePersonFromBase_Click"/>
+       
     </Grid>
 </Window>
