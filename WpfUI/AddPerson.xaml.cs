@@ -71,7 +71,7 @@ namespace WpfUI
 
 
         public List<Month> monthlist = new List<Month>();
-        public void FillMonthList(List<Month> monthlist)
+        public static void FillMonthList(List<Month> monthlist)
         {
             monthlist.Add(new Month("Wrzesień"));
             monthlist.Add(new Month("Październik"));

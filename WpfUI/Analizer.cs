@@ -46,8 +46,7 @@ namespace WpfUI
                 using (SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connstrPlatnicy"].ConnectionString))
                 {
                     connection.Open();
-
-                    string cmdstr = "UPDATE [Płatnicy] SET Styczeń = @param1 WHERE Id=@param2";
+                    string cmdstr = "UPDATE [Płatnicy] SET "+Load.monthName+" = @param1 WHERE Id=@param2";
                     SqlCommand cmd = new SqlCommand(cmdstr, connection);
                     cmd.Parameters.Add("@param1", SqlDbType.Int, 50).Value = (Int32)pay.Sum;
                     cmd.Parameters.Add("@param2", SqlDbType.Int, 50).Value = Int32.Parse(pay.Title);
@@ -72,14 +71,12 @@ namespace WpfUI
         {
             using (StreamReader sr = new StreamReader(source))
             {
-                //reading lines from second to last, removing null at the and
                 string line = sr.ReadLine();
                 while (line != null)
                 {
                     line = sr.ReadLine();
                     textarray.Add(line);
                 }
-                textarray.RemoveAt(textarray.Count-1);
                 
             }
         }

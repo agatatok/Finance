@@ -40,7 +40,8 @@ namespace WpfUI
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz zakończyć pracę programu?", "Zakończ", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes) Close();
         }
     }
     }

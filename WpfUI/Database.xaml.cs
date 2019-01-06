@@ -59,11 +59,13 @@ namespace WpfUI
 
         private void DeletePersonFromBase_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć płatnika?", "Usunięcie płatnika", MessageBoxButton.YesNo);
+            DataRowView Id = (DataRowView)dg_Baza.SelectedItem;
+            string personId = Id.Row.ItemArray[0].ToString();
+            string name = Id.Row.ItemArray[1].ToString()+" "+Id.Row.ItemArray[2].ToString();
+            string message = String.Format("Czy na pewno chcesz usunąć płatnika {0}?", name);
+            MessageBoxResult result = MessageBox.Show(message, "Usunięcie płatnika", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                DataRowView Id = (DataRowView)dg_Baza.SelectedItem;
-                string personId = Id.Row.ItemArray[0].ToString();
                 DeleteFromBase(personId);
                 dt.Rows.Remove(Id.Row);
             }

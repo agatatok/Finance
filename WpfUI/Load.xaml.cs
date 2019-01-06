@@ -22,10 +22,17 @@ namespace WpfUI
     public partial class Load : Window
     {
         private string source;
+        public List<Month> monthlist = new List<Month>();
+        public static string monthName;
 
+
+  
         public Load()
         {
             InitializeComponent();
+            AddPerson.FillMonthList(monthlist);
+            months.ItemsSource = monthlist;
+            months.SelectedIndex = PayMonthSetter();
         }
         private void BtnBrowse_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +44,6 @@ namespace WpfUI
 
             if (openFileDialog.ShowDialog() == true)
             {
-                //File.Open(openFileDialog.FileName, FileMode.Open);
                 tb_source.Text = openFileDialog.FileName;
                 source = tb_source.Text;
             }
@@ -54,6 +60,20 @@ namespace WpfUI
             }
 
             Close();
+            Database database = new Database();
+            database.Show();
+        }
+
+        
+
+        private int PayMonthSetter()
+        {
+            int month;
+            int now = DateTime.Now.Month;
+            if (now >= 9 && now <= 12) month = now - 8;
+            else month = now + 2;
+            Load.monthName = monthlist.ElementAt(month).MonthName;
+            return month;
         }
     }
 }
